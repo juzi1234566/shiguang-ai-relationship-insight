@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.0 — Windows 可下载版
+
+- [Releases](https://github.com/juzi1234566/shiguang-ai-relationship-insight/releases) 提供可直接运行的关系版 / 情侣版单文件 EXE；源码层的原生密钥恢复实现仍不公开，含真实数据的赠送版也不公开。
+- 产品健壮性：微信装在非默认盘符（如 D 盘、`<安装目录>\<版本号>\Weixin.dll`）也能自动识别；查找微信进程改用系统快照，不再依赖 `tasklist`；检测到旧版微信 3.x 会明确提示升级到 4.0+；被安全软件拦截读内存时给出针对性指引，而不是笼统失败。
+- README 增加“下载即用（Windows）”与知情同意使用须知；同步伦理边界说明。
+
 ## v0.1.0 — Public Portfolio Edition
 
 - 建立全新、无私人历史的公开作品仓库；
