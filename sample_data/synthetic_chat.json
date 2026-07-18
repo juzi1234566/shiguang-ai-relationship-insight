@@ -1,0 +1,11 @@
+{
+  "messages": [
+    {"createTime": 1784336400, "isSent": true, "renderType": "text", "content": "今天下班后要不要一起去散步？"},
+    {"createTime": 1784343600, "isSent": false, "renderType": "text", "content": "好呀，正好想和你聊聊最近的计划。"},
+    {"createTime": 1784350800, "isSent": true, "renderType": "text", "content": "上次你推荐的书我看完了，最喜欢第三章。"},
+    {"createTime": 1784358000, "isSent": false, "renderType": "text", "content": "我就知道你会喜欢！周末交换一下读书笔记吧。"},
+    {"createTime": 1784365200, "isSent": true, "renderType": "text", "content": "明天降温，记得带外套。"},
+    {"createTime": 1784372400, "isSent": false, "renderType": "text", "content": "收到，你也别忙到忘记吃饭。"}
+  ],
+  "notice": "完全合成的演示数据，不对应任何真实人物。"
+}

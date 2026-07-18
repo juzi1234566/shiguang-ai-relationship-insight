@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>开始使用拾光</title>
+  <style>
+    :root{--ink:#292724;--muted:#817a72;--paper:#fffdfa;--wash:#f5eee5;--line:#e8dbcc;--accent:#b4473d;--soft:#f8e9e4;--ok:#38715b;--shadow:0 24px 70px rgba(91,66,44,.12)}
+    *{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:"Microsoft YaHei UI","PingFang SC",system-ui,sans-serif;background:radial-gradient(circle at 12% 5%,#fff 0,transparent 35%),linear-gradient(145deg,#f8f1e9,#f2e8dc);min-height:100vh;font-size:18px;line-height:1.7}
+    button,input,select,textarea{font:inherit}.shell{width:min(1120px,calc(100% - 36px));margin:34px auto;display:grid;grid-template-columns:290px 1fr;min-height:760px;background:rgba(255,253,250,.94);border:1px solid rgba(223,207,190,.9);border-radius:30px;overflow:hidden;box-shadow:var(--shadow)}
+    aside{padding:42px 32px;background:linear-gradient(180deg,#fffaf5,#f4e9dc);border-right:1px solid var(--line);display:flex;flex-direction:column}.brand{font-family:Georgia,"Songti SC",serif;font-size:42px;color:var(--accent);line-height:1}.tag{color:var(--muted);font-size:16px;margin-top:12px}.steps{margin-top:54px;display:grid;gap:12px}.step-dot{display:flex;align-items:center;gap:13px;padding:10px 12px;border-radius:14px;color:#9a9188;font-size:16px}.step-dot b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#eee3d7;font-size:14px}.step-dot.active{color:var(--ink);background:#fff}.step-dot.active b,.step-dot.done b{background:var(--accent);color:white}.privacy{margin-top:auto;padding:18px;border-radius:18px;background:rgba(255,255,255,.68);color:#716a62;font-size:14px}
+    main{padding:48px 56px 42px;position:relative}.panel{display:none;animation:up .28s ease}.panel.active{display:block}@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.eyebrow{color:var(--accent);font-weight:800;font-size:15px;letter-spacing:.08em}.title{font-family:Georgia,"Songti SC",serif;font-size:42px;line-height:1.3;margin:8px 0 12px}.lead{font-size:20px;color:var(--muted);max-width:720px;margin:0 0 30px}.card{border:1px solid var(--line);background:#fff;border-radius:22px;padding:24px;margin:16px 0}.card.soft{background:var(--wash);border-color:transparent}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.relation{border:2px solid transparent;background:#f7f1e9;border-radius:18px;padding:18px;text-align:left;cursor:pointer;color:var(--ink)}.relation:hover{transform:translateY(-1px)}.relation.selected{border-color:var(--accent);background:var(--soft)}.relation strong{display:block;font-size:20px}.relation span{display:block;color:var(--muted);font-size:14px;margin-top:3px}
+    label{display:block;font-weight:750;margin:18px 0 7px}.input{width:100%;border:1px solid #d9cabc;border-radius:14px;background:#fff;padding:14px 16px;outline:none;color:var(--ink)}.input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(180,71,61,.09)}textarea.input{min-height:92px;resize:vertical}.actions{display:flex;gap:12px;align-items:center;margin-top:30px}.btn{border:0;border-radius:15px;padding:13px 22px;cursor:pointer;font-weight:800}.btn.primary{background:var(--accent);color:#fff;box-shadow:0 8px 22px rgba(180,71,61,.22)}.btn.secondary{background:#eee4d9;color:#4d4944}.btn.link{background:transparent;color:var(--accent);padding-left:4px}.btn:disabled{opacity:.45;cursor:not-allowed}.status{display:flex;gap:12px;align-items:flex-start;border-radius:18px;padding:18px;background:#f3ede5;margin:15px 0}.status.ok{background:#e9f3ed;color:#315f4d}.status.warn{background:#fff2dc;color:#7b5a22}.lamp{width:12px;height:12px;border-radius:50%;background:#b9afa5;margin-top:9px;flex:none}.ok .lamp{background:var(--ok)}.warn .lamp{background:#d39a38}.tiny{color:var(--muted);font-size:14px}.contacts{display:grid;gap:10px;max-height:360px;overflow:auto;padding-right:5px}.contact{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:17px;background:white;padding:13px 15px;cursor:pointer;text-align:left;color:var(--ink)}.contact:hover,.contact.selected{border-color:var(--accent);background:var(--soft)}.avatar{width:46px;height:46px;border-radius:50%;background:#e9ddd1;display:grid;place-items:center;color:var(--accent);font-weight:900}.contact-text{min-width:0}.contact-name{font-weight:800}.preview{font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.progress{height:12px;background:#eadfd4;border-radius:99px;overflow:hidden;margin:18px 0 8px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#d7806d);border-radius:inherit;transition:width .35s}.progress-meta{display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:14px}.bar.indeterminate{width:34%;animation:loading 1.25s ease-in-out infinite}@keyframes loading{0%{transform:translateX(-105%)}100%{transform:translateX(310%)}}.success-mark{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:#e8f3ec;color:var(--ok);font-size:40px;margin-bottom:20px}.error{color:#8f312a;font-size:15px;margin-top:10px;min-height:24px}.error:not(:empty){background:#fff0ed;border:1px solid #efc2bb;border-radius:14px;padding:12px 14px}.hide{display:none!important}
+    @media(max-width:780px){body{font-size:16px}.shell{display:block;margin:0;width:100%;min-height:100vh;border:0;border-radius:0}.shell aside{padding:24px;border:0}.steps,.privacy{display:none}.brand{font-size:34px}main{padding:30px 22px}.title{font-size:33px}.lead{font-size:18px}.grid{grid-template-columns:1fr}.actions{flex-wrap:wrap}.btn{width:100%}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <div class="brand" id="brand">拾光关系</div>
+    <div class="tag" id="tagline">读懂每一段重要关系</div>
+    <div class="steps" id="steps"></div>
+    <div class="privacy">🔒 聊天记录只保存在这台电脑。只有生成 AI 分析时，必要的文本才会发送到你自己配置的模型服务。</div>
+  </aside>
+  <main>
+    <section class="panel active" data-panel="0">
+      <div class="eyebrow">欢迎来到拾光</div>
+      <h1 class="title">把一段重要的聊天，<br>变成真正看得懂的共同记忆。</h1>
+      <p class="lead">接下来我会陪你完成联系人选择、聊天导入和 AI 设置。全程只需要按按钮，不需要懂数据库、Python 或任何命令。</p>
+      <div class="card soft">
+        <strong>开始前准备两件事</strong>
+        <div style="margin-top:10px">① 运行仓库提供的合成数据演示，或准备自己合法导出的聊天 JSON。<br>② 所有演示数据都留在本机，不需要上传真实聊天。</div>
+      </div>
+      <div class="actions"><button class="btn primary" onclick="go(1)">开始设置</button><button class="btn secondary hide" id="cancelSetup" onclick="location.href='/'">返回当前档案</button></div>
+    </section>
+
+    <section class="panel" data-panel="1">
+      <div class="eyebrow">第 1 步 · 建立关系档案</div>
+      <h1 class="title">你想回顾的是哪一种关系？</h1>
+      <p class="lead">这会影响分析角度和页面文案。每位联系人都会单独存储，之后可以继续添加其他人。</p>
+      <div class="grid" id="relations">
+        <button class="relation" data-rel="friend"><strong>朋友</strong><span>陪伴、分享、默契与关系变化</span></button>
+        <button class="relation" data-rel="couple"><strong>伴侣</strong><span>亲密互动、共同成长与关系回顾</span></button>
+        <button class="relation" data-rel="family"><strong>家人</strong><span>关心、沟通方式与家庭记忆</span></button>
+        <button class="relation" data-rel="classmate"><strong>同学</strong><span>学习、合作与校园片段</span></button>
+        <button class="relation" data-rel="colleague"><strong>同事</strong><span>协作、反馈与工作关系</span></button>
+        <button class="relation" data-rel="other"><strong>其他重要的人</strong><span>由你来告诉 AI 该怎样理解</span></button>
+      </div>
+      <label for="personName">你平时怎么称呼对方？</label>
+      <input class="input" id="personName" maxlength="40" placeholder="例如：小林、妈妈、老王">
+      <label for="relationNote">简单介绍一下你们 <span class="tiny">（推荐，AI 会理解得更准确）</span></label>
+      <textarea class="input" id="relationNote" maxlength="800" placeholder="例如：大学室友，认识四年，经常聊学习和未来；我们说话比较直接，但彼此很信任。"></textarea>
+      <div class="error" id="profileError"></div>
+      <div class="actions"><button class="btn secondary" onclick="go(0)">返回</button><button class="btn primary" id="createProfile">下一步</button></div>
+    </section>
+
+    <section class="panel" data-panel="2">
+      <div class="eyebrow">第 2 步 · 导入数据</div>
+      <h1 class="title">用合成数据或 JSON 体验</h1>
+      <p class="lead">公开作品集版不包含原生微信密钥恢复；你可以运行合成演示，或导入自己合法导出的聊天 JSON。</p>
+      <div class="status warn" id="helperStatus"><div class="lamp"></div><div><strong>公开演示模式</strong><div class="tiny">原生数据适配器只在私有生产工程中维护</div></div></div>
+      <div id="prepareProgress" class="hide">
+        <div class="progress"><div class="bar" id="prepareBar"></div></div>
+        <div class="progress-meta"><span id="prepareStage">正在开始…</span><strong id="preparePercent">0%</strong></div>
+      </div>
+      <div class="card hide" id="helperGuide">
+        <strong>请保持电脑版微信登录并打开</strong>
+        <div class="tiny" style="margin-top:8px">点击一次即可。准备过程只读取本机数据库，不会修改或发送微信消息；完成后仍由你亲自选择要分析的人。</div>
+        <div class="actions"><button class="btn primary" id="openHelper">自动查找并准备聊天</button><button class="btn secondary" id="retryHelper">重新检查</button></div>
+        <button class="btn link" id="chooseWechatFolder">自动找不到？手动选择微信数据文件夹</button>
+      </div>
+      <div id="accountChooser" class="card hide">
+        <label for="wechatAccount" style="margin-top:0">这台电脑登录了多个微信，请选择你的账号</label>
+        <select class="input" id="wechatAccount"></select>
+      </div>
+      <div class="card hide" id="contactCard">
+        <label for="contactSearch" style="margin-top:0">选择要分析的人</label>
+        <input class="input" id="contactSearch" placeholder="输入昵称搜索">
+        <div class="tiny" id="contactHint" style="margin-top:8px"></div>
+        <div class="contacts" id="contacts" style="margin-top:14px"></div>
+        <div class="error" id="contactError"></div>
+        <div class="actions"><button class="btn primary" id="importContact" disabled>导入这个人的聊天</button></div>
+      </div>
+      <div class="card soft" style="border:2px solid var(--accent)">
+        <strong>已经导出过聊天？</strong>
+        <div class="tiny">也可以直接选择聊天记录 JSON 文件，拾光会自动识别常见格式。</div>
+        <button class="btn primary" id="importJson">选择 JSON 文件导入</button>
+      </div>
+      <div class="actions"><button class="btn secondary" onclick="go(1)">返回</button></div>
+    </section>
+
+    <section class="panel" data-panel="3">
+      <div class="eyebrow">正在导入</div>
+      <h1 class="title">正在整理你们的聊天记录</h1>
+      <p class="lead" id="importLead">请保持微信导入助手打开。拾光正在复制并建立独立的本地聊天库。</p>
+      <div class="progress"><div class="bar" id="importBar"></div></div>
+      <div class="progress-meta"><span id="importDetail">正在开始…</span><strong id="importPercent">0%</strong></div>
+      <div class="status" id="importStatusBox"><div class="lamp"></div><div><strong id="importStatus">正在读取消息…</strong><div class="tiny">这个过程不会修改微信里的任何内容</div></div></div>
+      <div class="error" id="importError" role="alert"></div>
+      <div class="actions hide" id="importActions"><button class="btn primary" id="importRetry">重试这次导入</button><button class="btn secondary" id="importBack">返回重新选择</button></div>
+    </section>
+
+    <section class="panel" data-panel="4">
+      <div class="eyebrow">第 3 步 · 开启 AI 分析</div>
+      <h1 class="title">连接你自己的 DeepSeek</h1>
+      <p class="lead">密钥会由 Windows 加密保存在这台电脑，不会写进网页，也不会分享给其他拾光用户。</p>
+      <div class="card soft">
+        <strong>没有 API Key？照着做就行</strong>
+        <ol style="margin:10px 0 0;padding-left:24px">
+          <li>点击“去创建 API Key”，登录 DeepSeek 开放平台；</li>
+          <li>创建一个新密钥并复制；</li>
+          <li>回到这里粘贴，拾光会自动验证。</li>
+        </ol>
+        <button class="btn link" id="openDeepseek">去创建 API Key ↗</button>
+      </div>
+      <label for="apiKey">粘贴 API Key</label>
+      <input class="input" id="apiKey" type="password" autocomplete="off" placeholder="sk-…">
+      <div class="tiny">普通聊天、首次分析和 Deep Research 默认统一使用 Pro 模型；以后仍可以在设置中手动修改。</div>
+      <div id="aiProgress" class="hide"><div class="progress"><div class="bar indeterminate"></div></div><div class="tiny">正在连接 DeepSeek，网络较慢时最多约 30 秒，请不要重复点击。</div></div>
+      <div class="error" id="aiError"></div>
+      <div class="actions"><button class="btn secondary" onclick="go(2)">返回</button><button class="btn primary" id="finishSetup">验证并开始分析</button></div>
+    </section>
+
+    <section class="panel" data-panel="5">
+      <div class="success-mark">✓</div>
+      <div class="eyebrow">设置完成</div>
+      <h1 class="title">拾光已经开始认识你们了</h1>
+      <p class="lead">应用正在重新打开，并会在后台按天完整分析全部聊天。你可以先浏览原文和数据；摘要、时间线和深度报告会随着分析逐步出现。</p>
+      <div class="card soft" id="summaryCard"></div>
+      <div class="actions"><button class="btn primary" onclick="location.href='/'">进入拾光</button></div>
+    </section>
+  </main>
+</div>
+<script>
+const stepNames=['欢迎','关系档案','选择聊天','本地导入','AI 设置','完成'];
+let current=0, state={relation:'friend',profile:null,contact:null,account:'',contacts:[]};
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const beat=()=>fetch('/api/app/heartbeat',{cache:'no-store'}).catch(()=>{});beat();setInterval(beat,5000);
+addEventListener('pagehide',()=>navigator.sendBeacon('/api/app/close','{}'));
+function go(n){current=n;$$('.panel').forEach(x=>x.classList.toggle('active',+x.dataset.panel===n));renderSteps();scrollTo({top:0,behavior:'smooth'})}
+function renderSteps(){$('#steps').innerHTML=stepNames.map((x,i)=>`<div class="step-dot ${i===current?'active':i<current?'done':''}"><b>${i<current?'✓':i+1}</b><span>${x}</span></div>`).join('')}
+async function api(path,opt={}){const r=await fetch(path,{headers:{'Content-Type':'application/json'},...opt});let d={};try{d=await r.json()}catch{}if(!r.ok||d.error)throw new Error(d.error||'操作没有完成，请稍后重试');return d}
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function pollJob(jobId,onProgress){for(;;){const job=await api('/api/onboarding/jobs/'+encodeURIComponent(jobId));onProgress?.(job);if(job.status==='completed')return job.result;if(job.status==='failed')throw new Error(job.error||job.message||'操作没有完成，请重试');await delay(350)}}
+function setProgress(prefix,job){const value=Math.max(0,Math.min(100,Number(job.progress||0)));$('#'+prefix+'Bar').style.width=value+'%';$('#'+prefix+'Percent').textContent=Math.round(value)+'%';const detail=$('#'+prefix+'Stage')||$('#'+prefix+'Detail');if(detail)detail.textContent=job.message||'正在处理…'}
+async function init(){const d=await api('/api/onboarding/status');state.server=d;document.documentElement.style.setProperty('--accent',d.product.accent||'#b4473d');$('#brand').textContent=d.product.name;$('#tagline').textContent=d.product.tagline;if((d.profiles||[]).some(x=>x.import_status==='ready'))$('#cancelSetup').classList.remove('hide');if(d.product.default_relation){state.relation=d.product.default_relation}if(d.active&&d.active.import_status==='new'&&d.active.edition===d.product.id){state.profile=d.active;state.relation=d.active.relation_type||state.relation;$('#personName').value=d.active.display_name||'';$('#relationNote').value=d.active.relation_note||''}selectRelation(state.relation);renderSteps()}
+function selectRelation(rel){state.relation=rel;$$('.relation').forEach(x=>x.classList.toggle('selected',x.dataset.rel===rel))}
+$$('.relation').forEach(x=>x.onclick=()=>selectRelation(x.dataset.rel));
+$('#createProfile').onclick=async()=>{const name=$('#personName').value.trim(),note=$('#relationNote').value.trim();$('#profileError').textContent='';if(!name){$('#profileError').textContent='请先填写你对对方的称呼';return}const b=$('#createProfile');b.disabled=true;b.textContent='正在建立档案…';try{const d=await api('/api/onboarding/profile',{method:'POST',body:JSON.stringify({profile_id:state.profile?.id||'',display_name:name,relation_type:state.relation,relation_note:note})});state.profile=d.profile;go(2);checkHelper()}catch(e){$('#profileError').textContent=e.message}finally{b.disabled=false;b.textContent='下一步'}};
+function populateAccounts(d){const accounts=d.accounts||[],select=$('#wechatAccount');select.innerHTML='';accounts.forEach(account=>{const option=document.createElement('option');option.value=account;option.textContent=account;select.appendChild(option)});const selected=d.default_account||d.account||accounts[0]||'';select.value=selected;state.account=selected;$('#accountChooser').classList.toggle('hide',accounts.length<2)}
+function useContacts(d){state.account=d.account||state.account;state.contacts=d.contacts||[];state.contact=null;$('#importContact').disabled=true;$('#contactCard').classList.remove('hide');const filtered=Number(d.filtered_contact_count||0);$('#contactHint').textContent=`已找到 ${state.contacts.length} 位有聊天记录的联系人${filtered?`，已自动隐藏 ${filtered} 位只有通讯录、没有聊天记录的人`:''}`;renderContacts(state.contacts)}
+async function showPrepared(d){populateAccounts(d);const box=$('#helperStatus'),warnings=Array.isArray(d.warnings)?d.warnings:[];box.className=warnings.length?'status warn':'status ok';box.innerHTML=warnings.length?`<div class="lamp"></div><div><strong>联系人已准备好，但有部分聊天分片没有读到（共 ${warnings.length} 个）</strong><div class="tiny">可以先继续选择；如果发现记录不完整，请保持微信登录后点击“自动查找并准备聊天”重试。已有数据不会被删除。</div></div>`:'<div class="lamp"></div><div><strong>准备完成，可以选择联系人了</strong><div class="tiny">只显示确实有聊天记录、能够导入的人</div></div>';$('#helperGuide').classList.toggle('hide',!warnings.length);$('#prepareProgress').classList.add('hide');if(Array.isArray(d.contacts)){useContacts(d)}else{await loadContacts(d.default_account||state.account||'')}}
+function showPrepareFailure(error){const message=String(error&&error.message||error||'未能读取微信数据'),box=$('#helperStatus'),manual=$('#chooseWechatFolder'),missingFolder=message.includes('聊天数据目录')||message.includes('db_storage');$('#prepareProgress').classList.add('hide');box.className='status warn';box.innerHTML=`<div class="lamp"></div><div><strong>这次没有准备完成</strong><div class="tiny">${message}。不会删除已有数据。</div></div>`;$('#helperGuide').classList.remove('hide');$('#contactCard').classList.add('hide');manual.classList.toggle('primary',missingFolder);manual.classList.toggle('link',!missingFolder);if(missingFolder){manual.textContent='选择微信聊天文件夹继续';setTimeout(()=>manual.scrollIntoView({behavior:'smooth',block:'center'}),0);manual.focus()}}
+async function checkHelper(){const box=$('#helperStatus');box.className='status';box.innerHTML='<div class="lamp"></div><div><strong>正在检查微信聊天数据…</strong><div class="tiny">这里只检查位置，不会开始耗时读取</div></div>';try{const d=await api('/api/onboarding/wechat');populateAccounts(d);if(d.connected){await showPrepared(d)}else if(d.stage==='missing_data'){showPrepareFailure(d.message)}else{box.className='status warn';box.innerHTML=`<div class="lamp"></div><div><strong>还没有准备聊天数据</strong><div class="tiny">${d.message||'请保持电脑版微信登录，然后点击下方按钮'}</div></div>`;$('#helperGuide').classList.remove('hide');$('#contactCard').classList.add('hide')}}catch(e){showPrepareFailure(e)}}
+async function prepareWechat(path,opt={}){const b=opt.button||$('#openHelper'),box=$('#helperStatus');b.disabled=true;b.textContent=opt.busyText||'正在自动准备，请不要关闭微信…';$('#prepareProgress').classList.remove('hide');setProgress('prepare',{progress:2,message:'正在启动本机读取'});box.className='status';box.innerHTML='<div class="lamp"></div><div><strong>正在安全读取微信数据库</strong><div class="tiny">页面会持续显示真实阶段；微信不会被关闭或修改</div></div>';try{const started=await api(path,{method:'POST',body:JSON.stringify({account:$('#wechatAccount').value||state.account||''})});if(started.cancelled){$('#prepareProgress').classList.add('hide');await checkHelper();return}const d=started.job_id?await pollJob(started.job_id,job=>{setProgress('prepare',job);box.querySelector('strong').textContent=job.message||'正在准备聊天数据'}):started;if(d.connected){await showPrepared(d)}else{throw new Error(d.message||'请保持微信登录后重试')}}catch(e){showPrepareFailure(e)}finally{b.disabled=false;b.textContent=opt.label||'自动查找并准备聊天'}}
+$('#openHelper').onclick=()=>prepareWechat('/api/onboarding/helper');$('#chooseWechatFolder').onclick=()=>prepareWechat('/api/onboarding/wechat-folder',{button:$('#chooseWechatFolder'),busyText:'正在打开文件夹选择…',label:'自动找不到？手动选择微信数据文件夹'});$('#retryHelper').onclick=checkHelper;
+$('#wechatAccount').onchange=e=>{state.account=e.target.value;state.contact=null;$('#contactCard').classList.add('hide');prepareWechat('/api/onboarding/helper',{busyText:'正在切换微信账号…'})};
+async function loadContacts(account){const box=$('#helperStatus');box.className='status';box.innerHTML='<div class="lamp"></div><div><strong>正在筛选有聊天记录的联系人…</strong><div class="tiny">不会把只有通讯录、没有聊天的人列进来</div></div>';const d=await api('/api/onboarding/contacts?account='+encodeURIComponent(account));useContacts(d);box.className='status ok';box.innerHTML='<div class="lamp"></div><div><strong>联系人已经准备好</strong><div class="tiny">请选择真正想分析的人</div></div>'}
+function renderContacts(items){const list=$('#contacts');list.innerHTML='';const visible=items.slice(0,80);if(!visible.length){list.innerHTML='<div class="status warn"><div class="lamp"></div><div><strong>没有找到匹配的人</strong><div class="tiny">可以换一个昵称或备注继续搜索</div></div></div>'}visible.forEach(c=>{const b=document.createElement('button');b.className='contact'+(state.contact&&state.contact.id===c.id?' selected':'');b.innerHTML=`<div class="avatar">${(c.name||'?').slice(0,1)}</div><div class="contact-text"><div class="contact-name"></div><div class="preview"></div></div>`;b.querySelector('.contact-name').textContent=c.name;b.querySelector('.preview').textContent='已有聊天记录，可以导入';b.onclick=()=>{state.contact=c;list.querySelectorAll('.contact').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');$('#contactError').textContent='';$('#importContact').disabled=false};list.appendChild(b)});if(items.length>visible.length){$('#contactHint').textContent+=`；当前先显示 ${visible.length} 位，输入昵称可继续搜索`}}
+$('#contactSearch').oninput=e=>{const q=e.target.value.trim().toLowerCase(),items=state.contacts.filter(c=>(c.name+c.id).toLowerCase().includes(q));if(state.contact&&!items.some(c=>c.id===state.contact.id)){state.contact=null;$('#importContact').disabled=true}renderContacts(items)};
+$('#importContact').onclick=()=>startImport('wechat');$('#importJson').onclick=()=>startImport('json');
+async function startImport(kind){if(kind==='wechat'&&!state.contact){$('#contactError').textContent='请先选择一个联系人';return}state.lastImportKind=kind;go(3);$('#importError').textContent='';$('#importActions').classList.add('hide');$('#importStatusBox').className='status';setProgress('import',{progress:2,message:'正在启动导入'});$('#importStatus').textContent='正在读取消息…';$('#importLead').textContent='请保持拾光和电脑版微信打开；这里会显示真实读取阶段和已处理条数。';try{let started;if(kind==='wechat'){started=await api('/api/onboarding/import-wechat',{method:'POST',body:JSON.stringify({profile_id:state.profile.id,account:state.account,contact_id:state.contact.id})})}else{started=await api('/api/onboarding/import-json',{method:'POST',body:JSON.stringify({profile_id:state.profile.id})});if(started.cancelled){go(2);return}}const d=started.job_id?await pollJob(started.job_id,job=>{setProgress('import',job);$('#importStatus').textContent=job.message||'正在导入';$('#importDetail').textContent=job.processed?`${job.message||'正在处理'} · 已处理 ${Number(job.processed).toLocaleString()} 条`:job.message||'正在处理'}):started;setProgress('import',{progress:100,message:'导入完成'});state.profile=d.profile;$('#importStatusBox').className='status ok';$('#importStatus').textContent=`已安全导入 ${Number(d.import.message_count||0).toLocaleString()} 条消息`;$('#importLead').textContent=`时间范围：${d.import.date_from||'未知'} 至 ${d.import.date_to||'未知'}。接下来只差 AI 设置。`;await delay(650);go(4)}catch(e){$('#importStatusBox').className='status warn';$('#importStatus').textContent='导入没有完成，但拾光没有删除或覆盖原来的数据';$('#importError').textContent=`${e.message}。你可以直接重试；如果仍失败，请返回重新选择联系人或重新准备微信。`;$('#importActions').classList.remove('hide')}}
+$('#importRetry').onclick=()=>startImport(state.lastImportKind||'wechat');$('#importBack').onclick=()=>go(2);
+$('#openDeepseek').onclick=()=>api('/api/onboarding/deepseek',{method:'POST',body:'{}'});
+$('#finishSetup').onclick=async()=>{const key=$('#apiKey').value.trim(),b=$('#finishSetup');$('#aiError').textContent='';if(!key){$('#aiError').textContent='请先粘贴 API Key';return}b.disabled=true;b.textContent='正在验证连接…';$('#aiProgress').classList.remove('hide');try{await api('/api/onboarding/ai',{method:'POST',body:JSON.stringify({profile_id:state.profile.id,api_key:key,base_url:'https://api.deepseek.com',model:'deepseek-v4-pro'})});$('#summaryCard').textContent=`${state.profile.display_name} · ${Number(state.profile.message_count||0).toLocaleString()} 条消息 · 每个联系人独立存储`;go(5);let n=0,t=setInterval(async()=>{n++;try{const r=await fetch('/api/onboarding/status');if(r.ok&&n>2){clearInterval(t);location.href='/'}}catch{}},1400)}catch(e){$('#aiError').textContent=`${e.message}。请检查网络、密钥和账户额度后重试，当前导入的聊天不会丢失。`;$('#aiProgress').classList.add('hide');b.disabled=false;b.textContent='验证并开始分析'}};
+init().catch(e=>{$('.lead').textContent='启动信息读取失败：'+e.message});
+</script>
+</body>
+</html>
