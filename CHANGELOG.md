@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3.0 — 导入向导升级
+
+- 新增：建立关系档案时可分别选择“我的性别 / 对方的性别”（可留空）。不再默认把对方当成“她”，性别会传给 AI，让它用与真实性别一致的称呼。老档案自动兼容。
+- 改进：DeepSeek API 申请引导对小白更友好——注册、**充值**（明确提示不充值会“额度不足”）、创建密钥、粘贴四步，并提供去平台 / 去充值 / 创建密钥三个直达入口。
+- 修复：导入完成或切换联系人后偶发“UI missing”、须重开程序的问题（单文件应用自我重启时的临时目录复用）。
+- 下载见 [Releases](https://github.com/juzi1234566/shiguang-ai-relationship-insight/releases)。
+
 ## v0.2.0 — Windows 可下载版
 
 - [Releases](https://github.com/juzi1234566/shiguang-ai-relationship-insight/releases) 提供可直接运行的关系版 / 情侣版单文件 EXE；源码层的原生密钥恢复实现仍不公开，含真实数据的赠送版也不公开。
